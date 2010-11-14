@@ -1,0 +1,13 @@
+"Gamemode"
+{
+	"name"		"Reap"
+	"version"	"0.1" //Release at 1.0!
+
+	"author_name"	"Ajax Studios"
+	"author_email"	"support@ajaxstudios.com"
+	"author_url"	"http://www.ajaxstudios.com/"
+	
+	"icon"		""
+	"info"		"Operation reapem and wheat"
+	"hide"		""
+}
