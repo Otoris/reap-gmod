@@ -1,3 +1,35 @@
+local DATABASE_HOST = "204.93.183.11"
+local DATABASE_PORT = 3306
+local DATABASE_NAME = "firstcho_gmod"
+local DATABASE_USERNAME = "firstcho_gmoder"
+local DATABASE_PASSWORD = "OM3UNts09of!"
+ 
+function printQuery(query)
+  PrintTable(query:getData())
+end
+ 
+function afterConnected(database)
+  local query1 = database:query("SELECT ID, Name, Cost FROM test WHERE Cost > 0.50")
+  query1.onData = function(Q,D) print("Q1") PrintTable(D) end
+  query1.onSuccess = printQuery
+  query1.onError = function(Q,E) print("Q1") print(E) end
+  query1:start()
+ 
+  local query2 = database:query("SELECT ID, Name, Cost FROM test")
+  query2.onData = function(Q,D) print("Q2") PrintTable(D) end
+  query2.onError = function(Q,E) print("Q1") print(E) end
+  query2:start()
+end
+ 
+function connectToDatabase()
+  local databaseObject = mysqloo.connect(DATABASE_HOST, DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_NAME, DATABASE_PORT)
+  databaseObject.onConnected = afterConnected
+  databaseObject:connect()
+end
+ 
+connectToDatabase()
+
+
 DB = {}
 
 --Otoris--
