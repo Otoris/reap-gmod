@@ -11,16 +11,16 @@ include( 'database.lua' )
 
 
 function GM:Initialize( )--Called when the gamemode loads and starts. 
-DB.Create()
+	DB.Create()
 
 end
 
 function GM:PlayerInitialSpawn( ply )--Is called when the player first spawns into the world. 
-DB.SearchPlayerDB( ply )
+	DB.SearchPlayerDB( ply )
 end
 
 function GM:PlayerSpawn( ply )--Called whenever a player respawns. 
-
+	ply:SetModel("models/player/breen.mdl")
 end
 
 function InsertInv()
