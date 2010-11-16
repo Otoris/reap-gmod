@@ -4,10 +4,12 @@ local DATABASE_NAME = "firstcho_gmod"
 local DATABASE_USERNAME = "firstcho_gmoder"
 local DATABASE_PASSWORD = "OM3UNts09of!"
  
+/*
 function printQuery(query)
   PrintTable(query:getData())
 end
  
+
 function afterConnected(database)
   local query1 = database:query("SELECT ID, Name, Cost FROM test WHERE Cost > 0.50")
   query1.onData = function(Q,D) print("Q1") PrintTable(D) end
@@ -20,7 +22,8 @@ function afterConnected(database)
   query2.onError = function(Q,E) print("Q1") print(E) end
   query2:start()
 end
- 
+*/
+
 function connectToDatabase()
   local databaseObject = mysqloo.connect(DATABASE_HOST, DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_NAME, DATABASE_PORT)
   databaseObject.onConnected = afterConnected
@@ -31,6 +34,7 @@ connectToDatabase()
 
 
 DB = {}
+DeveloperMode = true
 
 --Otoris--
 --DB.Create() Checks to see if the server already has a created DB, 
@@ -80,7 +84,7 @@ function DB.SearchPlayerDB( ply )
 	ply.unique_id = ply:SteamID() -- Uses the players steam id as unique_id
 	
 	result = sql.Query( "SELECT unique_id FROM reap_player_profiles WHERE unique_id = '"..ply.unique_id.."'" ) -- Checks for players unique steam id in the DB
-	result = sql.Query( "SELECT unique_id FROM reap_player_inventory WHERE unique_id = '"..ply.unique_id.."'" ) -- Checks for players unique steam id in the DB
+	result2 = sql.Query( "SELECT unique_id FROM reap_player_inventory WHERE unique_id = '"..ply.unique_id.."'" ) -- Checks for players unique steam id in the DB
 	if ( result && result2 ) then
 		if DeveloperMode then
 		Msg( "[REAP] Profile for ".. ply.unique_id .." Exists\n" )
